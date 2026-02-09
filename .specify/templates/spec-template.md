@@ -1,9 +1,16 @@
 # Feature Specification: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+**Feature Branch**: `[###-feature-name]`
+**Created**: [DATE]
+**Status**: Draft
 **Input**: User description: "$ARGUMENTS"
+
+## Constitutional Compliance
+
+*This specification must comply with the project constitution requiring:*
+- *No implementation without a complete specification*
+- *Adherence to phase-specific constraints and technology stacks*
+- *Clean code standards and explicit requirements*
 
 ## User Scenarios & Testing *(mandatory)*
 

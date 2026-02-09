@@ -31,7 +31,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Spec-Driven Development: Verify feature specification exists and is complete
+- Phase Compliance: Confirm implementation adheres to specified phase constraints
+- Technology Stack: Validate all tech choices align with phase-specific requirements
+- Repository Structure: Ensure code placement follows phase organization law
+- Clean Code Standards: Verify adherence to simplicity and readability principles
 
 ## Project Structure
 
