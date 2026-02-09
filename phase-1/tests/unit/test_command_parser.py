@@ -38,77 +38,59 @@ class TestCommandParser:
         assert result.cmd_type == CommandType.ADD
         assert result.args == ["clean the house"]
 
-    def test_parse_list_command_variants(self):
+    @pytest.mark.parametrize("variant", ["list", "ls", "l"])
+    def test_parse_list_command_variants(self, variant):
         """Test parsing list command with all variants."""
-        variants = ["list", "ls", "l"]
+        result = self.parser.parse(variant)
 
-        for variant in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
+        assert result is not None
+        assert result.cmd_type == CommandType.LIST
+        assert result.args == []
 
-                assert result is not None
-                assert result.cmd_type == CommandType.LIST
-                assert result.args == []
-
-    def test_parse_complete_command_variants(self):
+    @pytest.mark.parametrize("variant,expected_args", [("complete 1", [1]), ("done 2", [2]), ("c 3", [3])])
+    def test_parse_complete_command_variants(self, variant, expected_args):
         """Test parsing complete command with all variants."""
-        variants = [("complete 1", [1]), ("done 2", [2]), ("c 3", [3])]
+        result = self.parser.parse(variant)
 
-        for variant, expected_args in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
+        assert result is not None
+        assert result.cmd_type == CommandType.COMPLETE
+        assert result.args == expected_args
 
-                assert result is not None
-                assert result.cmd_type == CommandType.COMPLETE
-                assert result.args == expected_args
-
-    def test_parse_incomplete_command_variants(self):
+    @pytest.mark.parametrize("variant,expected_args", [("incomplete 1", [1]), ("undo 2", [2]), ("i 3", [3])])
+    def test_parse_incomplete_command_variants(self, variant, expected_args):
         """Test parsing incomplete command with all variants."""
-        variants = [("incomplete 1", [1]), ("undo 2", [2]), ("i 3", [3])]
+        result = self.parser.parse(variant)
 
-        for variant, expected_args in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
+        assert result is not None
+        assert result.cmd_type == CommandType.INCOMPLETE
+        assert result.args == expected_args
 
-                assert result is not None
-                assert result.cmd_type == CommandType.INCOMPLETE
-                assert result.args == expected_args
-
-    def test_parse_delete_command_variants(self):
+    @pytest.mark.parametrize("variant,expected_args", [("delete 1", [1]), ("del 2", [2]), ("d 3", [3])])
+    def test_parse_delete_command_variants(self, variant, expected_args):
         """Test parsing delete command with all variants."""
-        variants = [("delete 1", [1]), ("del 2", [2]), ("d 3", [3])]
+        result = self.parser.parse(variant)
 
-        for variant, expected_args in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
+        assert result is not None
+        assert result.cmd_type == CommandType.DELETE
+        assert result.args == expected_args
 
-                assert result is not None
-                assert result.cmd_type == CommandType.DELETE
-                assert result.args == expected_args
-
-    def test_parse_help_command_variants(self):
+    @pytest.mark.parametrize("variant", ["help", "?"])
+    def test_parse_help_command_variants(self, variant):
         """Test parsing help command with all variants."""
-        variants = ["help", "?"]
+        result = self.parser.parse(variant)
 
-        for variant in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
+        assert result is not None
+        assert result.cmd_type == CommandType.HELP
+        assert result.args == []
 
-                assert result is not None
-                assert result.cmd_type == CommandType.HELP
-                assert result.args == []
-
-    def test_parse_quit_command_variants(self):
+    @pytest.mark.parametrize("variant", ["quit", "q", "exit"])
+    def test_parse_quit_command_variants(self, variant):
         """Test parsing quit command with all variants."""
-        variants = ["quit", "q", "exit"]
+        result = self.parser.parse(variant)
 
-        for variant in variants:
-            with self.subTest(variant=variant):
-                result = self.parser.parse(variant)
-
-                assert result is not None
-                assert result.cmd_type == CommandType.QUIT
-                assert result.args == []
+        assert result is not None
+        assert result.cmd_type == CommandType.QUIT
+        assert result.args == []
 
     def test_parse_clear_command(self):
         """Test parsing clear command."""
@@ -119,16 +101,20 @@ class TestCommandParser:
         assert result.args == []
 
     def test_parse_invalid_command(self):
-        """Test parsing an invalid command."""
+        """Test parsing an invalid command treats it as add command."""
         result = self.parser.parse("invalidcommand")
 
-        assert result is None
+        assert result is not None
+        assert result.cmd_type == CommandType.ADD
+        assert result.args == ["invalidcommand"]
 
     def test_parse_invalid_numeric_argument(self):
-        """Test parsing a command with invalid numeric argument."""
+        """Test parsing a command with invalid numeric argument treats as add."""
         result = self.parser.parse("complete abc")
 
-        assert result is None
+        assert result is not None
+        assert result.cmd_type == CommandType.ADD
+        assert result.args == ["complete abc"]
 
     def test_parse_empty_input(self):
         """Test parsing empty input."""

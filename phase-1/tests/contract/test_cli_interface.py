@@ -122,7 +122,7 @@ class TestTodoConsole:
         # Add a todo first
         todo = self.console.service.add_todo("Test task")
 
-        with patch('builtins.print') as mock_print:
+        with patch('builtins.print') as mock_print, patch('builtins.input', return_value='yes'):
             self.console.handle_delete_command(todo.id)
 
             # Check that the success message was printed
@@ -146,7 +146,7 @@ class TestTodoConsole:
         self.console.service.add_todo("Test task 1")
         self.console.service.add_todo("Test task 2")
 
-        with patch('builtins.print') as mock_print:
+        with patch('builtins.print') as mock_print, patch('builtins.input', return_value='yes'):
             self.console.handle_clear_command()
 
             # Check that the success message was printed

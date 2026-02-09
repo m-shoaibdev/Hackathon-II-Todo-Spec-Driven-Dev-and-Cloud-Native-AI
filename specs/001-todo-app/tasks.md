@@ -12,7 +12,7 @@
 - **Priority:** P0
 - **User Story:** N/A
 - **Affected Files:** N/A
-- **Description:** Set up the Python virtual environment and install necessary dependencies (e.g., pytest).
+- **Description:** Set up the Python virtual environment and install necessary dependencies (e.g., pytest). [X]
 
 ## Foundational
 
@@ -32,7 +32,7 @@
 - **Priority:** P1
 - **User Story:** US2: As a user, I want to view my todo list, so that I can see all my tasks.
 - **Affected Files:** `src/cli/console.py`
-- **Description:** Implement the functionality to display the current todo list.
+- **Description:** Implement the functionality to display the current todo list. [X]
 
 ## User Stories
 
@@ -61,3 +61,41 @@
 - **User Story:** N/A
 - **Affected Files:** `README.md`
 - **Description:** Create a README.md file with setup instructions, usage examples, and project overview. [X]
+
+## UX Enhancements (Phase I+)
+
+- **Task ID:** 10
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/cli/ui.py`, `src/cli/console.py`, `requirements.txt`
+- **Description:** Add terminal color support with color-coded output (green for success, red for errors, yellow for pending). [X]
+
+- **Task ID:** 11
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/cli/console.py`, `src/parser/commands.py`
+- **Description:** Implement tab autocomplete for commands using readline module. [X]
+
+- **Task ID:** 12
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/cli/ui.py`, `src/cli/console.py`
+- **Description:** Add ASCII art banner and Unicode box-drawing borders for visual hierarchy. [X]
+
+- **Task ID:** 13
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/cli/console.py`
+- **Description:** Display statistics (total/complete/pending) in todo list view. [X]
+
+- **Task ID:** 14
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/cli/console.py`
+- **Description:** Add confirmation dialogs for destructive operations (delete, clear). [X]
+
+- **Task ID:** 15
+- **Priority:** P2
+- **User Story:** N/A
+- **Affected Files:** `src/parser/commands.py`, `src/cli/console.py`
+- **Description:** Implement enhanced error handling with helpful suggestions and validation. [X]
