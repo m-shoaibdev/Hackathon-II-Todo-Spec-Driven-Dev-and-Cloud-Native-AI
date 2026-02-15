@@ -29,3 +29,11 @@ build/
 
 # Environment variables
 .env*
+
+# Node.js / Next.js
+node_modules/
+.next/
+next-env.d.ts
+out/
+.DS_Store
+*.pem
